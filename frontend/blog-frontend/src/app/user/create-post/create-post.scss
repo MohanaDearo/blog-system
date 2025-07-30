@@ -1,0 +1,112 @@
+$AccentColor: #00bcd4; // Teal accent
+$ErrorColor: #ff5252; // Red for errors
+
+.outer-container {
+  background-color: #0d0d0d; // Deep black for dark theme
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.inner-container {
+  width: 500px;
+  background-color: #1e1e1e;
+  border-radius: 15px;
+  padding: 40px 30px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+
+  .heading-container {
+    text-align: center;
+    margin-bottom: 30px;
+
+    h1 {
+      color: $AccentColor;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+  }
+
+  .form-container {
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+
+      .title-container,
+      .content-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        label {
+          color: $AccentColor;
+          font-size: 1rem;
+          font-weight: 600;
+        }
+
+        input,
+        textarea {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #333;
+          border-radius: 8px;
+          background-color: #2a2a2a;
+          color: #fff;
+          font-size: 1rem;
+          transition: all 0.3s ease;
+
+          &:focus {
+            border-color: $AccentColor;
+            box-shadow: 0 0 5px $AccentColor;
+            outline: none;
+          }
+        }
+
+        textarea {
+          resize: vertical; // Allow resizing vertically
+          min-height: 100px;
+        }
+      }
+
+      .btn-container {
+        text-align: center;
+        margin-top: 20px;
+
+        button {
+          padding: 12px 50px;
+          border-radius: 8px;
+          border: 2px solid $AccentColor;
+          background-color: transparent;
+          color: $AccentColor;
+          margin-right: 10px;
+          font-size: 1.1rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s ease;
+
+          &:hover {
+            background-color: $AccentColor;
+            color: #121212;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+          }
+
+          &:active {
+            transform: translateY(0);
+            box-shadow: none;
+          }
+        }
+      }
+    }
+  }
+
+  .error-text {
+    color: $ErrorColor;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    margin-left: 5px;
+  }
+}

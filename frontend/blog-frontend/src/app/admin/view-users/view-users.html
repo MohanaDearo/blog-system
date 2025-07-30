@@ -1,0 +1,38 @@
+<div class="outer-container">
+  <div class="loader-overlay" *ngIf="isLoading">
+      <div class="loader"></div>
+  </div>
+  <h1>Posts</h1>
+  <div class="table-container">
+    <table *ngIf="allUsers.length>0" class="posts-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>role</th>
+          <th>Created_at</th>
+          <th>updated_at</th>
+          <th>Allow Update</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of allUsers">
+          <td>{{user.id}}</td>
+          <td>{{user.name}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.role}}</td>
+          <td>{{user.created_at}}</td>
+          <td>{{user.updated_at}}</td>
+          <td>
+            <label class="switch">
+              <input type="checkbox" [checked]="user.can_update === 1" (change)="onToggleCanUpdate(user, $event)">
+              <span class="slider round"></span>
+            </label>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+   <button (click)="goToDashBoard()">Back</button>
+</div>

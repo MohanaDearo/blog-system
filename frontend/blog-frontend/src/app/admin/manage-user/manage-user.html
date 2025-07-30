@@ -1,0 +1,50 @@
+<div class="outer-container">
+  <div class="createuser-container">
+
+    <div class="heading-cont">
+      <h2>Create User</h2>
+    </div>
+    <div class="form-cont">
+      <form (ngSubmit)="createuser()" [formGroup]="createuserForm">
+        <div class="name-cont">
+          <label for="name">Name</label>
+          <input type="text" formControlName="name" name="name" id="name" placeholder="Enter user name" required>
+          <p *ngIf="name?.touched && name?.errors?.['required']" class="error-text">*Name is Required</p>
+          <br>
+        </div>
+      
+      <div class="email-cont">
+        <label for="email">Email</label>
+        <input type="email" formControlName="email" name="email" id="email" placeholder="Enter your email" required>
+        <p *ngIf="email?.touched && email?.errors?.['required']" class="error-text">*Email is Required</p>
+        <p *ngIf="email?.touched && email?.errors?.['email']" class="error-text">Enter a valid email</p><br>
+      </div>
+      <div class="pass-cont">
+        <label for="password">Password</label>
+        <input type="password" formControlName="password" name="password" id="password" placeholder="Enter your password" required>
+        <p *ngIf="password?.touched && password?.errors?.['required']" class="error-text">*Password is required</p> <br>
+      </div>
+      <div class="role-cont">
+          <label for="role">Role</label>
+          <select formControlName="role" name="role" id="role" required>
+            <option value="">Select Role</option>
+            <option *ngFor="let role of roles" [value]="role.role">{{role.role}}</option>
+          </select>
+          <p *ngIf="role?.touched && role?.errors?.['required']" class="error-text">*role is Required</p>
+          <br>
+      </div>
+      <div class="btn-cont">
+        <button type="submit">Create</button>
+        <button (click)="goToDashBoard()">Back</button>
+      </div>
+      <div class="messages">
+        <p *ngIf="successMessage" class="success-text">{{successMessage}}</p>
+        <p *ngIf="failedMessage" class="failed-text">{{failedMessage}}</p>
+      </div>
+      
+    </form>
+    </div>
+  
+  
+</div>
+</div>

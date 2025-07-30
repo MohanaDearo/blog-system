@@ -1,0 +1,33 @@
+<div class="outer-container">
+  <div class="loader-overlay" *ngIf="isLoading">
+      <div class="loader"></div>
+  </div>
+  <h1>Posts</h1>
+  <div class="table-container">
+    <table *ngIf="allPosts.length>0" class="posts-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Content</th>
+          <th>Status</th>
+          <th>Created By</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let post of allPosts">
+          <td>{{post.id}}</td>
+          <td>{{post.title}}</td>
+          <td>{{post.content}}</td>
+          <td>{{post.status}}</td>
+          <td>{{post.created_by}}</td>
+          <td>
+            <button (click)="deletePosts(post.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+   <button (click)="goToDashBoard()">Back</button>
+</div>
