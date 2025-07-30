@@ -1,0 +1,27 @@
+# === Laravel Backend ===
+/backend/vendor/
+/backend/node_modules/
+/backend/storage/*.key
+/backend/.env
+/backend/.env.*
+/backend/.idea/
+/backend/.vscode/
+*.log
+
+# === Angular Frontend ===
+/frontend/node_modules/
+/frontend/dist/
+/frontend/.angular/
+/frontend/.env
+/frontend/.env.*
+
+# === System Files ===
+.DS_Store
+Thumbs.db
+*.bak
+*.tmp
+*.swp
+
+# === IDEs ===
+.vscode/
+.idea/
