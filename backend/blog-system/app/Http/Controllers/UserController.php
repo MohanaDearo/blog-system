@@ -70,4 +70,13 @@ class UserController extends Controller
             'message'=>'Permission updated successfully',
         ],201);
     }
+     public function canUpdate(Request $request){
+        $user = auth()->user();
+        $data = $this->userService->canUpdate($user->id);
+        return response()->json([
+            'success'=>true,
+            'message'=>'Permission fetched successfully',
+            'data'=> $data
+        ],200);
+    }
 }

@@ -31,4 +31,7 @@ class UserService{
   public function allowUpdate($id, array $data){
     return $this->userRepository->allowUpdate($id,$data);
   }
+  public function canUpdate($id){
+    return $this->userRepository->canUpdate($id);
+  }
 }

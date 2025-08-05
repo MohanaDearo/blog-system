@@ -23,11 +23,18 @@
           <td>{{post.status}}</td>
           <td>{{post.created_by}}</td>
           <td>
-            <button (click)="deletePosts(post.id)">Delete</button>
+            <button (click)="confirmDelete(post.id)">Delete</button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
    <button (click)="goToDashBoard()">Back</button>
+   <div class="modal-overlay" *ngIf="isModalDisplay">
+      <div class="modal">
+        <p>Are you sure want to delete?</p>
+        <button class="cancel-btn" (click)="cancel()">Cancel</button>
+        <button class="delete-btn"  (click)="deletePosts()">Delete</button>
+      </div>
+    </div>
 </div>

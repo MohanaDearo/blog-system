@@ -26,4 +26,8 @@ class UserRepository implements UserRepositoryInterface{
     $user->update($data);
     return $user;
   }
+  public function canUpdate($id){
+    $user = User::findOrFail($id);
+    return $user->can_update;
+  }
 }

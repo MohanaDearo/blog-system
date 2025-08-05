@@ -4,7 +4,7 @@
       <div class="loader"></div>
   </div>
   <div class="table-container">
-    <table *ngIf="userPosts.length>0" class="posts-table">
+    <table *ngIf="userPosts.length>0; else noPosts" class="posts-table">
       <thead>
         <tr>
           <th>ID</th>
@@ -23,12 +23,22 @@
           <td>{{post.status}}</td>
           <!-- <td>{{post.created_by}}</td> -->
           <td>
-            <button (click)="deletePosts(post.id)">Delete</button>
+            <button (click)="confirmDelete(post.id)">Delete</button>
             <button *ngIf="canUpdate==1" (click)="updatePosts(post.id)">Update</button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
+  <ng-template #noPosts>
+    <p class="no-posts-message">No posts available rightnow</p>
+  </ng-template>
    <button (click)="goToDashBoard()">Back</button>
+   <div class="modal-overlay" *ngIf="isModalDisplay">
+      <div class="modal">
+        <p>Are you sure want to delete?</p>
+        <button class="cancel-btn" (click)="cancel()">Cancel</button>
+        <button class="delete-btn"  (click)="deletePosts()">Delete</button>
+      </div>
+    </div>
 </div>

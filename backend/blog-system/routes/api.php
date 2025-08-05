@@ -60,3 +60,4 @@ Route::middleware('auth:sanctum')->post('/posts',[PostController::class,'createP
 Route::middleware('auth:sanctum')->get('/posts',[PostController::class,'getPosts']);
 Route::middleware('auth:sanctum')->put('/posts/{id}',[PostController::class,'updatePost']);
 Route::middleware('auth:sanctum')->delete('/posts/{id}',[PostController::class,'deletePost']);
+Route::middleware('auth:sanctum')->get('/canupdate',[UserController::class,'canUpdate']);

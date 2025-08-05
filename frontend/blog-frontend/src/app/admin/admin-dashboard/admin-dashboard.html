@@ -1,16 +1,45 @@
-<div class="outer-container">
-  <div class="dashboard-container">
-    <div class="header-container">
-      <h1>Welcome Super Admin</h1>
+<div class="dashboard-container">
+  <div class="welcome-header">
+    <div>
+      <h1>Hello, Super Admin 👋</h1>
+      <p class="subheading">Manage your platform easily from this panel</p>
     </div>
-    
-    <div class="btn-container">
-      <button (click)="manageusers()">Manage users</button>
-      <button (click)="viewusers()">View users</button>
-      <button (click)="approveposts()">Approve posts</button>
-      <button (click)="viewposts()">View posts</button>
-      <button (click)="logout()">Log out</button>
+    <button class="logout-btn" (click)="confirmLogout()">Logout</button>
+  </div>
+
+  <div class="action-grid">
+    <div class="action-card" (click)="manageusers()">
+      <h3>👥 Manage Users</h3>
+      <p>Create / Register users</p>
     </div>
-    
+
+    <div class="action-card" (click)="viewusers()">
+      <h3>📋 View Users</h3>
+      <p>See registered users and details</p>
+    </div>
+
+    <div class="action-card" (click)="approveposts()">
+      <h3>✅ Approve Posts</h3>
+      <p>Approve right posts</p>
+    </div>
+
+    <div class="action-card" (click)="viewposts()">
+      <h3>📝 View Posts</h3>
+      <p>All published user posts</p>
+    </div>
+  </div>
+
+  <div class="modal-overlay" *ngIf="isModalDisplay">
+    <div class="modal">
+      <p>Are you sure you want to logout?</p>
+      <div class="modal-actions">
+        <button class="cancel-btn" (click)="cancel()">Cancel</button>
+        <button class="logout-confirm-btn" (click)="logout()">Logout</button>
+      </div>
+    </div>
   </div>
 </div>
+
+
+
+

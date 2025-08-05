@@ -16,7 +16,7 @@ export class AdminLogin {
   isLoading = false;
   constructor(private authService : AuthService, private router : Router, private fb: FormBuilder){
     this.loginForm = this.fb.group({
-      email:['',[Validators.required]],
+      email:['',[Validators.required,Validators.email]],
       password:['',Validators.required]
     });
   }

@@ -91,7 +91,7 @@
 $AccentColor: #00bcd4; // Teal accent
 
 .outer-container {
-  background-color: #0d0d0d; // Deep black for modern dark UI
+  background:#4158d0;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -103,7 +103,7 @@ $AccentColor: #00bcd4; // Teal accent
 .login-container {
   height: auto;
   width: 450px;
-  background-color: #1e1e1e;
+  background-color: white;
   border-radius: 15px;
   padding: 40px 30px;
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
@@ -111,8 +111,8 @@ $AccentColor: #00bcd4; // Teal accent
   .heading-cont {
     text-align: center;
     margin-bottom: 40px;
-    color: $AccentColor;
-    font-size: 1.8rem;
+    color: #333333;
+    font-size: 1.5rem;
     font-weight: bold;
   }
 
@@ -128,7 +128,7 @@ $AccentColor: #00bcd4; // Teal accent
       gap: 10px;
 
       label {
-        color: $AccentColor;
+        color: #333333;
         font-size: 1rem;
         font-weight: 600;
         margin-left: 5px;
@@ -138,16 +138,17 @@ $AccentColor: #00bcd4; // Teal accent
         height: 40px;
         width: 100%;
         padding: 0 10px;
-        border: 1px solid #333;
-        border-radius: 8px;
-        background-color: #2a2a2a;
-        color: #fff;
+        // border: 1px solid #333;
+        border: none;
+        border-radius: 35px;
+        background-color: #e6e6e6;
+        color: #666666;
         font-size: 1rem;
         transition: all 0.3s ease;
 
         &:focus {
-          border-color: $AccentColor;
-          box-shadow: 0 0 5px $AccentColor;
+          border-color: #666666;
+          box-shadow: 0 0 5px #666666;
           outline: none;
         }
       }
@@ -160,17 +161,17 @@ $AccentColor: #00bcd4; // Teal accent
       button {
         padding: 12px 50px;
         border-radius: 8px;
-        border: 2px solid $AccentColor;
-        background-color: transparent;
-        color: $AccentColor;
+        border:none;
+        background-color: #57b846;
+        color: #fff;
         font-size: 1.1rem;
         font-weight: 600;
         cursor: pointer;
         transition: all 0.3s ease;
 
         &:hover {
-          background-color: $AccentColor;
-          color: #121212;
+          background-color:#333333;
+          color: white;
           transform: translateY(-2px);
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
         }
@@ -184,11 +185,11 @@ $AccentColor: #00bcd4; // Teal accent
   }
 }
 
-.error-text {
-  color: #ff5252;
-  text-align: center;
-  margin-top: 10px;
-}
+// .error-text {
+//   color: #ff5252;
+//   text-align: center;
+//   margin-top: 10px;
+// }
 .loader-overlay {
   position: fixed;
   top: 0;
@@ -215,6 +216,16 @@ $AccentColor: #00bcd4; // Teal accent
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+.error-space {
+  min-height: 1.2em; // Reserve space to prevent layout shift
+  margin-top: 2px;
+}
+
+.error-text {
+  color: #e74c3c;
+  font-size: 0.85rem;
+  margin: 0;
 }
 
 

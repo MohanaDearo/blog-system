@@ -17,6 +17,8 @@ export class ViewPosts implements OnInit {
   successMessage = '';
   errorMessage='';
   isLoading : boolean = false;
+  isModalDisplay : boolean = false;
+  selectedPostId : number|null = null;
   constructor(private adminService : AdminService, private router:Router){}
   ngOnInit(): void {
       this.loadAllPosts();
@@ -39,15 +41,29 @@ export class ViewPosts implements OnInit {
   goToDashBoard(){
     this.router.navigate(['/admin-dashboard']);
   }
-  deletePosts(postID:number){
-    this.adminService.deletePost(postID).subscribe({
+  deletePosts(){
+    if (this.selectedPostId === null) return;
+    const id = this.selectedPostId;
+    console.log('deleted clicked inside modal',id)
+    this.adminService.deletePost(id).subscribe({
       next : (response)=>{
         console.log('Post deleted successfully',response);
         this.loadAllPosts();
+        this.isModalDisplay=false;
+        
       },
       error:(err)=>{
         console.error('post deletion failed',err);
       }
     });
+  }
+
+  confirmDelete(postID:number){
+    this.selectedPostId = postID;
+    console.log(this.selectedPostId);
+    this.isModalDisplay = true;
+  }
+  cancel(){
+    this.isModalDisplay = false;
   }
 }

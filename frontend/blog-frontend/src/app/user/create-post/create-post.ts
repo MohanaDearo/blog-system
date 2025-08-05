@@ -13,6 +13,8 @@ import { CommonModule } from '@angular/common';
   standalone:true,
 })
 export class CreatePost {
+  successMessage = "";
+  errorMessage = "";
   createpostForm : FormGroup;
   constructor(private router:Router, private fb:FormBuilder, private userService : UserService){
     this.createpostForm = this.fb.group({
@@ -36,12 +38,25 @@ export class CreatePost {
     const postData = this.createpostForm.value;
     this.userService.createPost(postData).subscribe({
       next:(response)=>{
-        console.log('post created succeesfully',response);
+        console.log('post created successfully',response);
+        this.successMessage = "post created successfully";
+        setTimeout(()=>{
+          this.successMessage = "";
+        },3000);
+        this.createpostForm.reset();
       },
       error:(err)=>{
         console.error('unable to create post',err);
+        this.errorMessage = "Unable to create Post";
+        setTimeout(()=>{
+          this.errorMessage = "";
+        },3000);
       }
     });
+
+    
+
+    
   }
 
   goToDashBoard(){

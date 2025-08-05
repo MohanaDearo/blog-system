@@ -1,116 +1,157 @@
-// // p{
-// //   color: white;
-// // }
-// // .outer-container{
-// //   background-color: black;
-// //   height: 100vh;
-// //   padding: 5px;
-// //   display: flex;
-// //   align-items: center;
-// //   justify-content: center;
-// //   color: #fff;
-// // }
-// // .dashboard-container{
-// //   height: 100vh;
-// //   width: 100%;
-// //   background-color:  #121212;
-// //   // text-align: center;
-// // }
-// // .header-container{
-// //   display: flex;
-// //   align-items: center;
-// //   justify-content: center;
-// // }
-// // .btn-container{
-// //   width: 100%;
-// //   height: 500px;
-// //   background-color: skyblue;
-// //   display: flex;
-// //   align-items: center;
-// //   justify-content: space-evenly;
-// //   button{
-// //     padding-top: 25px;
-// //     padding-bottom: 25px;
-// //     padding-left: 50px;
-// //     padding-right: 50px;
-// //     border-style: solid;
-// //     border-radius: 10px;
-// //     cursor: pointer;
-// //     background-color: aqua;
-// //   }
-// //   button:hover {
-// //   background-color: #00CCCC;
-// //   transition: 0.5s ease;
-// //   }
-// // }
-
-
-p {
-  color: #e0e0e0; // Softer white for better readability
-  font-size: 1.1rem;
-  line-height: 1.6;
+/* Container Background */
+.dashboard-container {
+  background-color: #f4f6fa;
+  min-height: 100vh;
+  padding: 30px;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.outer-container {
-  background-color: #0d0d0d; // Darker shade for a modern look
-  height: 100vh;
-  padding: 20px;
+/* Welcome Header */
+.welcome-header {
+  background: linear-gradient(to right, #ffeb99, #ffd580);
+  padding: 25px 30px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.welcome-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.subheading {
+  margin-top: 6px;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+/* Logout Button */
+.logout-btn {
+  background-color: #ff7300;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #e86200;
+}
+
+/* Action Cards Grid */
+.action-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+/* Individual Card Style */
+.action-card {
+  background-color: #fffaf0;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s ease;
+  cursor: pointer;
+  border-left: 5px solid transparent;
+}
+
+.action-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  border-left: 5px solid #ffa726;
+  background-color: #ffeb99;
+}
+
+.action-card h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.action-card p {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Modal Styling */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #e0e0e0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  z-index: 1000;
 }
 
-.dashboard-container {
-  height: 90vh;
-  width: 90%;
-  background-color: #1e1e1e; // Subtle contrast from outer
-  border-radius: 15px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.header-container {
-  background: linear-gradient(90deg, #00bcd4, #2196f3);
-  color: #fff;
-  font-size: 1.8rem;
-  font-weight: bold;
+.modal {
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   text-align: center;
-  padding: 20px;
+  max-width: 400px;
+  width: 90%;
 }
 
-.btn-container {
-  flex: 1;
+.modal p {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.modal-actions {
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  background-color: #121212;
-  padding: 20px;
-
-  button {
-    padding: 15px 40px;
-    border: none;
-    border-radius: 12px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #fff;
-    background: linear-gradient(145deg, #00bcd4, #2196f3);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    transition: all 0.3s ease;
-
-    &:hover {
-      background: linear-gradient(145deg, #2196f3, #00bcd4);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5);
-    }
-
-    &:active {
-      transform: translateY(0);
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
-    }
-  }
+  justify-content: space-between;
+  gap: 15px;
 }
+
+.cancel-btn,
+.logout-confirm-btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.cancel-btn {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.logout-confirm-btn {
+  background-color: #ff5722;
+  color: white;
+}
+
+.logout-confirm-btn:hover {
+  background-color: #e64a19;
+}
+
+.cancel-btn:hover {
+  background-color: #d6d6d6;
+}
+
+
+
+
+
+
+

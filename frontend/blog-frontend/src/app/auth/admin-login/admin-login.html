@@ -1,4 +1,4 @@
-<div class="outer-container">
+<!-- <div class="outer-container">
     <div class="loader-overlay" *ngIf="isLoading">
       <div class="loader"></div>
     </div>
@@ -31,4 +31,71 @@
   
   
 </div>
+</div> -->
+
+<div class="outer-container">
+  <!-- Loader -->
+  <div class="loader-overlay" *ngIf="isLoading">
+    <div class="loader"></div>
+  </div>
+
+  <div class="login-container">
+    <!-- Heading -->
+    <div class="heading-cont">
+      <h2>Admin Login</h2>
+    </div>
+
+    <!-- Form -->
+    <div class="form-cont">
+      <form (ngSubmit)="login()" [formGroup]="loginForm">
+
+        <!-- Email -->
+        <div class="email-cont">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            formControlName="email"
+            name="email"
+            id="email"
+            placeholder="Enter your email"
+            required
+          />
+          <div class="error-space">
+            <p *ngIf="email?.touched && email?.errors?.['required']" class="error-text">
+              *Email is Required
+            </p>
+            <p *ngIf="email?.touched && email?.errors?.['email']" class="error-text">
+              Enter a valid email
+            </p>
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="pass-cont">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            formControlName="password"
+            name="password"
+            id="password"
+            placeholder="Enter your password"
+            required
+          />
+          <div class="error-space">
+            <p *ngIf="password?.touched && password?.errors?.['required']" class="error-text">
+              *Password is required
+            </p>
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="btn-cont">
+          <button type="submit" [disabled]="isLoading">
+            {{ isLoading ? 'Logging in' : 'Login' }}
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
 </div>

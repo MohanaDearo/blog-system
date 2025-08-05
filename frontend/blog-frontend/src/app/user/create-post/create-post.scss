@@ -103,6 +103,12 @@ $ErrorColor: #ff5252; // Red for errors
     }
   }
 
+  .success-text{
+    color: green;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    margin-left: 5px;
+  }
   .error-text {
     color: $ErrorColor;
     font-size: 0.9rem;

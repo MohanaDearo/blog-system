@@ -17,19 +17,19 @@ export class ViewPost implements OnInit {
   errorMessage = '';
   isLoading : boolean = false;
   canUpdate = 0;
+  isModalDisplay : boolean = false;
+  postId : number | null = null ;
   constructor(private router:Router, private userService:UserService){};
    ngOnInit(): void {
       this.isLoading = true;
       this.checkCanUpdate();
-      this.loadAllPost();
-      
+      this.loadAllPost();      
   }
-
   checkCanUpdate(){
-    
     this.userService.checkCanUpdate().subscribe({
       next:(response)=>{
         this.canUpdate = response.data;
+        console.log(this.canUpdate);
       }
     });
   }
@@ -51,8 +51,11 @@ export class ViewPost implements OnInit {
     this.router.navigate(['user-dashboard']);
   }
 
-  deletePosts(postId:number){
-    this.userService.deletePost(postId).subscribe({
+  deletePosts(){
+    if(this.postId===null){
+      return;
+    }
+    this.userService.deletePost(this.postId).subscribe({
       next:(response)=>{
         console.log('Post deleted successfully',response);
         this.loadAllPost();
@@ -64,5 +67,14 @@ export class ViewPost implements OnInit {
   }
   updatePosts(postID:number){
     this.router.navigate(['update-post',postID]);
+  }
+
+  confirmDelete(postId:number){
+    this.postId = postId;
+    this.isModalDisplay=true;
+  }
+
+  cancel(){
+    this.isModalDisplay=false;
   }
 }

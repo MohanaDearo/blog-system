@@ -7,9 +7,16 @@
     <div class="btn-container">
       <button (click)="createpost()">Create Post</button>
       <button (click)="viewpost()">View posts</button>
-      <button (click)="logout()">Log out</button>
+      <button (click)="confirmLogout()">Log out</button>
        <!-- <button>View Posts</button> -->
     </div>
     
+  </div>
+  <div class="modal-overlay" *ngIf="isModalDisplay">
+      <div class="modal">
+        <p>Are you sure want to logout?</p>
+        <button class="cancel-btn" (click)="cancel()">Cancel</button>
+        <button class="logout-btn"  (click)="logout()">Logout</button>
+      </div>
   </div>
 </div>
