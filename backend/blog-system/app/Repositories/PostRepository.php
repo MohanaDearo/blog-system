@@ -3,6 +3,8 @@ namespace App\Repositories;
 use App\Models\Post;
 use App\Models\roles_Master;
 use App\Repositories\Interfaces\PostRepositoryInterface;
+use App\Models\User;
+use App\Repositories\Interfaces\UserRepositoryInterface;
 
 class PostRepository implements PostRepositoryInterface{
   public function all(){ //this is for admin to fetch all the posts
@@ -40,7 +42,17 @@ class PostRepository implements PostRepositoryInterface{
   }
   public function getRoles(){
     $roles = roles_master::all();
-
     return $roles;
+  }
+
+  public function getDashboardDetails(){
+    $dashboardDetails = [
+      $users = User::count(),
+      $approvedPosts = Post::where('status','approved')->count(),
+      $pendingPosts = Post::where('status','pending')->count(),
+      $rejectedPosts = Post::where('status','rejected')->count(),
+    ];
+
+    return $dashboardDetails;
   }
 }

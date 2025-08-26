@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreUserRequest;
 
 class UserController extends Controller
 {
@@ -22,14 +23,8 @@ class UserController extends Controller
         ],200);
     }
 
-    public function store(Request $request){
-        $validated = $request->validate([
-            'name'=>'required|string|max:255',
-            'email'=>'required|email',
-            'password'=>'required|string|min:6',
-            'role'=>'required|string|in:user,admin',
-        ]);
-
+    public function store(StoreUserRequest $request){
+        $validated = $request->validated();
         $user = $this->userService->createUser($validated);
         return response()->json([
             'success'=>true,
@@ -37,15 +32,9 @@ class UserController extends Controller
         ],200);
     }
 
-    public function updateUser(Request $request, $id){
-        $validated = $request->validate([
-            'name'=>'required|string|max:255',
-            'email'=>'required|string|email',
-            'password'=>'required|string|min:6',
-            'role'=>'required|string|in:user,admin',
-        ]);
+    public function updateUser(StoreUserRequest $request, $id){
+        $validated = $request->validated();
         $user = $this->userService->updateUser($id, $validated);
-
         return response()->json([
             'success'=>true,
             'message'=>'User updated successfully'

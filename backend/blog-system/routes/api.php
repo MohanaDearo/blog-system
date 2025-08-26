@@ -21,43 +21,27 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/admin/login',[AuthController::class, 'login']);
+Route::post('/login',[AuthController::class, 'login']);
 Route::middleware('auth:sanctum','is_admin')->prefix('admin')->group(function(){
     Route::get('/users',[UserController::class, 'index']);
-});
-Route::middleware('auth:sanctum','is_admin')->prefix('admin')->group(function(){
     Route::put('/allowupdate/{id}',[UserController::class, 'allowUpdate']);
-});
-Route::middleware('auth:sanctum','is_admin')->prefix('admin')->group(function(){
-    Route::Post('/users',[UserController::class, 'store']);
-});
-Route::middleware('auth:sanctum','is_admin')->prefix('admin')->group(function(){
-    Route::Put('/users/{id}',[UserController::class, 'updateUser']);
-});
-Route::middleware('auth:sanctum','is_admin')->prefix('admin')->group(function(){
-    Route::Delete('/users/{id}',[UserController::class, 'destroy']);
-});
-Route::middleware('auth:sanctum','is_admin')->prefix('admin')->group(function(){
+    Route::post('/users',[UserController::class, 'store']);
+    Route::put('/users/{id}',[UserController::class, 'updateUser']);
+    Route::delete('/users/{id}',[UserController::class, 'destroy']);
     Route::get('/getposts',[PostController::class, 'getAllPosts']);
-});
-Route::middleware('auth:sanctum','is_admin')->prefix('admin')->group(function(){
     Route::put('/approvepost/{id}',[PostController::class, 'approvePost']);
-});
-Route::middleware('auth:sanctum','is_admin')->prefix('admin')->group(function(){
     Route::get('/getpendingposts',[PostController::class, 'getPendingPost']);
-});
-Route::middleware('auth:sanctum','is_admin')->prefix('admin')->group(function(){
     Route::put('/rejectpost/{id}',[PostController::class, 'rejectPost']);
-});
-Route::middleware('auth:sanctum','is_admin')->prefix('admin')->group(function(){
     Route::delete('/deletepost/{id}',[PostController::class, 'adminDeletePost']);
-});
-Route::middleware('auth:sanctum','is_admin')->prefix('admin')->group(function(){
     Route::get('/getroles',[PostController::class, 'getRoles']);
+    Route::get('/getdashboarddetails',[PostController::class, 'getDashboardDetails']);
 });
-Route::post('/login',[AuthController::class, 'userLogin']);
-Route::middleware('auth:sanctum')->post('/posts',[PostController::class,'createPost']);
-Route::middleware('auth:sanctum')->get('/posts',[PostController::class,'getPosts']);
-Route::middleware('auth:sanctum')->put('/posts/{id}',[PostController::class,'updatePost']);
-Route::middleware('auth:sanctum')->delete('/posts/{id}',[PostController::class,'deletePost']);
-Route::middleware('auth:sanctum')->get('/canupdate',[UserController::class,'canUpdate']);
+
+// Route::post('/login',[AuthController::class, 'userLogin']);
+Route::middleware('auth:sanctum','is_user')->group(function(){
+    Route::post('/posts',[PostController::class,'createPost']);
+    Route::get('/posts',[PostController::class,'getPosts']);
+    Route::put('/posts/{id}',[PostController::class,'updatePost']);
+    Route::delete('/posts/{id}',[PostController::class,'deletePost']);
+    Route::get('/canupdate',[UserController::class,'canUpdate']);
+});

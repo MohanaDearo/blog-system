@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\roles_master;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\CreatePostRequest;
 
 
 use Illuminate\Http\Request;
@@ -18,12 +19,8 @@ class PostController extends Controller
         $this->postService = $postService;
     }
 
-    public function createPost(Request $request){
-        $validated = $request->validate([
-            'title'=>'required|string|max:50',
-            'content'=>'required|string|max:255'
-        ]);
-
+    public function createPost(CreatePostRequest $request){
+        $validated = $request->validated();
         $post = $this->postService->createPost($request->user(), $validated);
         return response()->json([
             'success'=>true,
@@ -49,11 +46,8 @@ class PostController extends Controller
         ],201);
     }
 
-    public function updatePost($id, Request $request){
-        $validated = $request->validate([
-            'title'=>'required|string|max:50',
-            'content'=>'required|string|max:255'
-        ]);
+    public function updatePost($id, CreatePostRequest $request){
+        $validated = $request->validated();
 
         $post = $this->postService->updatePost($request->user(), $id, $validated);
         return response()->json([
@@ -133,4 +127,12 @@ class PostController extends Controller
         ],201);
     }
 
+    public function getDashboardDetails(){
+        $dashboardDetails = $this->postService->getDashboardDetails();
+        return response()->json([
+            'success'=>true,
+            'message'=>'Dashboard details fetched',
+            'data'=>$dashboardDetails
+        ],200);
+    }
 }

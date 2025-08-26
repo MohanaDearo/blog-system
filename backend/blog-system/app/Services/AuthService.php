@@ -11,11 +11,12 @@ class AuthService{
     $this->authRepository = $authRepository;
   }
 
-  public function adminLogin(array $credentials){
+  public function login(array $credentials){
     $user = $this->authRepository->findByEmail($credentials['email']);
 
-    if($user && Hash::check($credentials['password'], $user->password) && $user->role == 'admin'){
-      return $user->createToken('admin-token')->plainTextToken;
+    if($user && Hash::check($credentials['password'], $user->password)){
+      $token = $user->createToken('login-token')->plainTextToken;
+      return $token;
     }
     return false;
   }

@@ -86,5 +86,8 @@ class PostService{
     return $this->postRepository->getRoles();
   }
 
+  public function getDashboardDetails(){
+    return $this->postRepository->getDashboardDetails();
+  }
  
 }

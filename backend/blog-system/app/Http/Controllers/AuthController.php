@@ -19,10 +19,10 @@ class AuthController extends Controller
             'password'=>'required|string|min:6'
         ]);
 
-        $token = $this->authService->adminLogin($validated);
+        $token = $this->authService->login($validated);
         if(! $token){
             return response()->json([
-                'error'=>true,
+                'error'=>false,
                 'message'=>'Invalid credentials or not an admin user'
             ],401);
         }
@@ -32,7 +32,6 @@ class AuthController extends Controller
             'message'=>'Login successfull',
             'token'=> $token
         ],201);
-
     }
 
     public function userLogin(Request $request){

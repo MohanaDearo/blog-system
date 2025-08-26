@@ -10,4 +10,5 @@ interface PostRepositoryInterface{
   public function delete($user,$id);
   public function getPendingPost();
   public function getRoles();
+  public function getDashboardDetails();
 }
